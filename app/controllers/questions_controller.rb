@@ -9,6 +9,12 @@ class QuestionsController < ApplicationController
     lists+=1
 
     end
-    @questions.sort_by! {|title, time| time}
+    @questions.sort_by! {|test, title, time| time}
   end
+
+  def show
+    @title = Question.all.where(id: params[:id].first)
+    
+  end
+
 end
