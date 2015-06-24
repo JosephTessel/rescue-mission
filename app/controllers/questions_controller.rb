@@ -15,7 +15,10 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @title = Question.all.where(id: params[:id])[0]
+    @question = Question.find(params[:id])
+    @title = Question.find_by(id: params[:id])
+    # binding.pry
+    # @answers = @question.answer(params[:id])
 
   end
 

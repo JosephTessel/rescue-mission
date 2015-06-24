@@ -1,0 +1,23 @@
+<div>
+<h1>Answer a question</h1>
+
+<%= form_for [@question, @answer] do |f| %>
+<div class ="field">
+<%= f.label :title %>
+<%= f.text_field :title %>
+
+</div>
+
+<div class ="field">
+<%= f.label :answer %>
+<%= f.text_field :answer %>
+</div>
+
+<div class="field">
+<%f.label :question_id%>
+<%f.hidden_field :id%>
+
+<%= f.submit%>
+
+<%end%>
+</div>
