@@ -27,6 +27,11 @@ class AnswersController < ApplicationController
      end
   end
 
+
+  def update
+    @answers.question_id = params["question_id"]
+  end
+
   def destroy
   end
 

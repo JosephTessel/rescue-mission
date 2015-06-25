@@ -14,9 +14,24 @@ class QuestionsController < ApplicationController
     @questions.sort_by! {|test, title, time| time}
   end
 
-  def update
-    @question = Question.find(params[:id])
+  def edit
+    @update_question = Question.find(params[:id])
   end
+
+  def update
+    @questions = Question.find(params[:id])
+    @questions.title = params[:question][:title]
+    @questions.body = params[:question][:body]
+     if @questions.save
+       flash[:notice] = "Question updated"
+       redirect_to :questions
+
+     else
+       flash[:notice] = "Question not added"
+      redirect_to :back
+     end
+  end
+
 
   def show
     @question = Question.find(params[:id])
@@ -28,17 +43,26 @@ class QuestionsController < ApplicationController
 
   def create
     @questions = Question.new(questions_params)
+    binding.pry
      if @questions.save
-       flash[:notice] = "Question created"
+       flash[:notice] = "Question edited"
        redirect_to :back
      else
-       flash[:notice] = "Question not added"
+       flash[:notice] = "Question not edited"
       redirect_to :back
      end
   end
 
   def destroy
-    @questions = Question.new(questions_params)
+    @questions = Question.find(params[:id])
+    @questions.destroy
+     if @questions.save
+       flash[:notice] = "Question destroyed"
+       redirect_to :back
+     else
+       flash[:notice] = "Question intact"
+      redirect_to :back
+     end
   end
 
   private
