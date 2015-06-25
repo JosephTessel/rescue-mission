@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   def new
-@entry = Question.new
+    @entry = Question.new
   end
   def index
     @entry = Question.new
@@ -12,6 +12,10 @@ class QuestionsController < ApplicationController
 
     end
     @questions.sort_by! {|test, title, time| time}
+  end
+
+  def update
+    @question = Question.find(params[:id])
   end
 
   def show

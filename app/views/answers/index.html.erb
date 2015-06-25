@@ -1,6 +1,6 @@
 <ul>
 Question Number: <%=params[:question_id]%><br><br>
-<% @answers.all.where(question_id: params[:question_id]).each do |answer| %>
+<% @answers.all.where(question_id: params[:question_id]).reverse.each do |answer| %>
 
 <li>  Answer ID: <%= answer.id %><br><br>
   Title of Answer: <%= answer.title %><br><br>
